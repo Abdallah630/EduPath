@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using EduPath.Core.DTOs;
 using EduPath.Core.Interfaces;
 using EduPath.Core.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,8 +25,14 @@ namespace EduPath.API.Controllers
             _signInManager = signInManager;
             _tokenService = tokenService;
         }
+        [Authorize]
+        [HttpGet("test")]
+        public IActionResult Test()
+        {
+            return Ok("أنت مسجل دخول!");
+        }
 
-
+        [Authorize]
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterDto dto)
         {
