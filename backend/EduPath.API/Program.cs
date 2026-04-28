@@ -1,5 +1,7 @@
+using EduPath.Core.Interfaces;
 using EduPath.Core.Models;
 using EduPath.Infrastructure.Data;
+using EduPath.Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +17,7 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectio
 builder.Services.AddIdentity<AppUser,IdentityRole>()
 .AddEntityFrameworkStores<AppDbContext>()
 .AddDefaultTokenProviders();
+builder.Services.AddScoped<ITokenService, TokenService>();
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
