@@ -7,7 +7,7 @@ using EduPath.Core.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
-namespace EduPath.Infrastructure.Services
+namespace EduPath.Application.Services
 {
     public class TokenService : ITokenService
     {

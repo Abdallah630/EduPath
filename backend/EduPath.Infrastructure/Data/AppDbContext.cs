@@ -11,5 +11,6 @@ namespace EduPath.Infrastructure.Data
         {
             
         }
+        public DbSet<Course> Courses { get; set; }
     }
 }

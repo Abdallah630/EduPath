@@ -25,14 +25,9 @@ namespace EduPath.API.Controllers
             _signInManager = signInManager;
             _tokenService = tokenService;
         }
-        [Authorize]
-        [HttpGet("test")]
-        public IActionResult Test()
-        {
-            return Ok("أنت مسجل دخول!");
-        }
 
-        [Authorize]
+
+        
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterDto dto)
         {

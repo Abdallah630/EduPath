@@ -1,8 +1,8 @@
 using System.Text;
+using EduPath.Application.Services;
 using EduPath.Core.Interfaces;
 using EduPath.Core.Models;
 using EduPath.Infrastructure.Data;
-using EduPath.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -65,7 +65,7 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
 });
-
+builder.Services.AddScoped<ICourseService,CourseService>();
 
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())
