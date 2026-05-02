@@ -13,5 +13,6 @@ namespace EduPath.Core.Interfaces
         Task<CourseResponseDto> CreateAsync(CreateCourseDto dto, string instructorId);
         Task<bool> UpdateAsync(int id, CreateCourseDto dto, string instructorId);
         Task<bool> DeleteAsync(int id, string instructorId);
+        Task<bool> PublishAsync(int id, string instructorId);
     }
 }

@@ -12,6 +12,7 @@ namespace EduPath.API.Controllers
     {
         private readonly ICourseService _courseService;
 
+
         public CourseController(ICourseService courseService)
         {
             _courseService = courseService;
@@ -74,6 +75,21 @@ namespace EduPath.API.Controllers
                 return Forbid("انت مش صاحب هذا الكورس");
 
             return NoContent();
+        }
+
+        [Authorize(Roles = "Instructor")]
+        [HttpPatch("{id}/publish")]
+        public async Task<IActionResult> Publish(int id)
+        {
+            var instructorId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (instructorId == null)
+                return Unauthorized();
+
+            var result = await _courseService.PublishAsync(id, instructorId);
+            if (!result)
+                return Forbid("انت مش صاحب هذا الكورس");
+
+            return Ok("تم نشر الكورس بنجاح");
         }
     }
 }

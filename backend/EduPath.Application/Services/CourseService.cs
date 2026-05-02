@@ -112,5 +112,18 @@ namespace EduPath.Application.Services
 
             return true;
         }
+        public async Task<bool> PublishAsync(int id, string instructorId)
+        {
+            var course = await _context.Courses.FindAsync(id);
+
+            if (course == null || course.InstructorId != instructorId)
+                return false;
+
+            course.IsPublished = true;
+            _context.Courses.Update(course);
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
     }
 }
